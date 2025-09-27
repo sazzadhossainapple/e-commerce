@@ -21,7 +21,7 @@ const products = [
         image: '/banner/product-1.png',
     },
     {
-        id: 2,
+        id: 3,
         brand: 'Samsung',
         title: 'Galaxy Z Flip 4',
         desc: 'Flex window, unique design, and powerful performance.',
