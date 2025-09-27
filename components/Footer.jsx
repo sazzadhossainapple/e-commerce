@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Footer() {
     return (
@@ -146,38 +147,102 @@ export default function Footer() {
 
             {/* Middle Section */}
 
-            <div className="px-6 md:px-10 py-8 grid gap-6 md:grid-cols-3 text-sm">
-                <div className="flex items-center space-x-3">
-                    <span className="font-semibold">📞</span>
+            <div className="container mx-auto px-6 md:px-10 py-8 grid gap-8 lg:gap-16  lg:grid-cols-[20%_40%_40%] text-sm text-center md:text-left">
+                <div className="flex items-center justify-center md:justify-start space-x-3 border-b md:border-0 border-[#F3F4F6] pb-6 md:pb-0">
+                    <div className="bg-[#F3F4F6] p-1 rounded-md h-10 w-10 flex items-center justify-center">
+                        <Image
+                            src="/icon/headphone.svg"
+                            alt="location"
+                            height={24}
+                            width={24}
+                            priority
+                        />
+                    </div>
                     <div>
-                        <p>8:30 AM – 10:30 PM</p>
-                        <p className="font-medium">+3628398030</p>
+                        <p className="font-normal text-sm text-[#6B7280] mb-1">
+                            8:30 AM – 10:30 PM
+                        </p>
+                        <p className="font-semibold text-[#1F2937]">
+                            +3628398030
+                        </p>
                     </div>
                 </div>
-                <div>
-                    <p className="font-medium mb-2">Download Now on</p>
+                <div className="flex flex-col md:flex-row items-center gap-3 border-b md:border-0 border-[#F3F4F6] pb-8 md:pb-0">
+                    <div>
+                        <p className="font-semibold mb-2 text-[#1F2937]">
+                            Download Now on
+                        </p>
+                        <p className="text-[#6B7280] text-sm">
+                            Free home delivery on your first purchase
+                        </p>
+                    </div>
                     <div className="flex space-x-3">
-                        <img
-                            src="/appstore.png"
-                            alt="App Store"
-                            className="h-8"
-                        />
-                        <img
-                            src="/googleplay.png"
-                            alt="Google Play"
-                            className="h-8"
-                        />
+                        <Link href="#">
+                            <Image
+                                src="/image/google-app-store.png"
+                                alt="location"
+                                height={50}
+                                width={130}
+                                className="object-contain"
+                                priority
+                            />
+                        </Link>
+                        <Link href="#">
+                            <Image
+                                src="/image/apple-app-store.png"
+                                alt="location"
+                                height={50}
+                                width={130}
+                                className="object-contain"
+                                priority
+                            />
+                        </Link>
                     </div>
                 </div>
-                <div>
-                    <p className="font-medium mb-2">We Support</p>
-                    <div className="flex space-x-3">
-                        <img src="/visa.png" alt="Visa" className="h-6" />
-                        <img src="/paypal.png" alt="Paypal" className="h-6" />
-                        <img
-                            src="/mastercard.png"
-                            alt="Mastercard"
-                            className="h-6"
+                <div className="">
+                    <p className="font-semibold mb-2 text-[#1F2937] ">
+                        We Support
+                    </p>
+                    <div className="flex space-x-3 items-center md:items-start justify-center md:justify-start ">
+                        <Image
+                            src="/payment/mastercard.png"
+                            alt="location"
+                            height={20}
+                            width={40}
+                            className="object-contain"
+                            priority
+                        />
+                        <Image
+                            src="/payment/visa.png"
+                            alt="location"
+                            height={20}
+                            width={40}
+                            className="object-contain"
+                            priority
+                        />
+                        <Image
+                            src="/payment/paypal.png"
+                            alt="location"
+                            height={20}
+                            width={50}
+                            className="object-contain"
+                            priority
+                        />
+                        <Image
+                            src="/payment/amex.png"
+                            alt="location"
+                            height={20}
+                            width={50}
+                            className="object-contain"
+                            priority
+                        />
+                        <Image
+                            src="/payment/westernunion.png"
+                            alt="location"
+                            height={20}
+                            width={60}
+                            className="object-contain"
+                            priority
                         />
                     </div>
                 </div>
@@ -185,9 +250,9 @@ export default function Footer() {
 
             {/* Bottom */}
             <div className="border-t border-[#F3F4F6]">
-                <div className="container mx-auto px-6 md:px-10 py-4 flex flex-col md:flex-row justify-between text-xs text-gray-500 space-y-2 md:space-y-0">
+                <div className="container mx-auto px-6 md:px-10 py-4 flex flex-col-reverse md:flex-row justify-center md:justify-between items-center text-xs text-gray-500 gap-4">
                     <p>© Copyright 2025 – TailGrids.</p>
-                    <div className="flex space-x-4">
+                    <div className="flex flex-col md:flex-row gap-4">
                         <a href="#" className="hover:text-blue-600">
                             Refund Policy
                         </a>

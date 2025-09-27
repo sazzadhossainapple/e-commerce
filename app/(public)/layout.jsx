@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 
 export default function PublicLayout({ children }) {
     return (
-        <div>
+        <div className='overflow-x-hidden'>
             <Header />
             <main>{children}</main>
             <Footer />
