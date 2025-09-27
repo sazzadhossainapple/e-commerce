@@ -76,7 +76,10 @@ const Header = () => {
                         Flash Sale Live – 30% Off Everything
                     </span>
 
-                    <button className="hover:underline text-xs hidden lg:flex items-center gap-1 cursor-pointer ">
+                    <Link
+                        href="/login"
+                        className="hover:underline text-xs hidden lg:flex items-center gap-1 cursor-pointer "
+                    >
                         <Image
                             src="/icon/User.svg"
                             alt="user"
@@ -86,7 +89,7 @@ const Header = () => {
                             priority
                         />
                         Login / Register
-                    </button>
+                    </Link>
                 </div>
             </div>
 
