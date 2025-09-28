@@ -2,19 +2,17 @@
 import { MoreVertical, ChevronUp, ChevronDown } from 'lucide-react';
 
 const RadialTargetCard = () => (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-100 h-full flex flex-col">
+    <div className="bg-gray-100 rounded-xl shadow-sm border border-gray-100 h-full flex flex-col">
         {/* Header */}
-        <div className="p-6 border border-gray-100 bg-white ">
-            <div className="flex justify-between items-center mb-6">
-                <h3 className="text-lg font-semibold text-gray-800">
-                    Monthly Target
-                </h3>
+        <div className="bg-white p-6 rounded-xl">
+            <div className="flex justify-between items-center mb-2">
+                <p className="font-semibold text-gray-900"> Monthly Target</p>
                 <MoreVertical
                     size={20}
                     className="text-gray-400 cursor-pointer"
                 />
             </div>
-            <p className="text-sm text-gray-500 -mt-4 mb-6">
+            <p className="text-sm text-gray-500  mb-12">
                 Target you've set for each month
             </p>
 
@@ -34,22 +32,22 @@ const RadialTargetCard = () => (
 
                 {/* Inner Content (Centered over the arc) */}
                 <div className="absolute top-[70px] flex flex-col items-center justify-center -translate-y-6">
-                    <p className="text-4xl font-bold text-gray-900">75.55%</p>
-                    <div className="flex items-center text-sm font-semibold text-green-600 mt-1">
+                    <p className="text-2xl font-bold text-gray-900">75.55%</p>
+                    <div className="flex items-center text-sm font-semibold text-green-600 bg-[#ECFDF3] mt-1 rounded-full px-2 py-1">
                         <ChevronUp size={18} />
                         <span>+10%</span>
                     </div>
                 </div>
             </div>
             {/* Text */}
-            <p className="text-center text-sm text-gray-600 mt-4 mb-6">
+            <p className="text-center text-sm text-[#667085] font-normal mt-10 mb-6">
                 You earn $3287 today, its higher than last month. Keep up your
                 good work!
             </p>
         </div>
 
         {/* Footer Stats (Matching colors and design) */}
-        <div className="flex justify-around  bg-gray-100 pt-4">
+        <div className="flex justify-around py-8 ">
             <div className="text-center">
                 <p className="text-sm text-gray-500 mb-1">Target</p>
                 <div className="flex items-center text-base font-semibold text-gray-900">

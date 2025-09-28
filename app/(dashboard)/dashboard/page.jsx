@@ -2,6 +2,7 @@
 import MonthlySalesCard from '@/components/dashboard/MonthlySalesCard';
 import RadialTargetCard from '@/components/dashboard/RadialTargetCard';
 import StatCard from '@/components/dashboard/StatCard';
+import Statistics from '@/components/dashboard/Statistics';
 import {
     Users,
     Package,
@@ -40,6 +41,7 @@ export default function DashboardPage() {
                 {/* Monthly Sales Card */}
                 <MonthlySalesCard />
             </div>
+            <Statistics />
         </div>
     );
 }

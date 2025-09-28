@@ -1,84 +1,81 @@
 'use client';
-import {
-    Users,
-    Package,
-    MoreVertical,
-    ChevronUp,
-    ChevronDown,
-} from 'lucide-react';
+import { MoreVertical } from 'lucide-react';
 
 const MonthlySalesCard = () => {
-    // Placeholder data for the bars
-    const salesData = [
-        { month: 'Jan', height: 400, isHighlight: false },
-        { month: 'Feb', height: 750, isHighlight: true }, // Highlighted blue bar
-        { month: 'Mar', height: 450, isHighlight: false },
-        { month: 'Apr', height: 250, isHighlight: false },
-        { month: 'May', height: 480, isHighlight: false },
-        { month: 'Jun', height: 620, isHighlight: false },
-        { month: 'Jul', height: 720, isHighlight: false },
-        { month: 'Aug', height: 350, isHighlight: false },
-        { month: 'Sep', height: 600, isHighlight: false },
-        { month: 'Oct', height: 300, isHighlight: false },
-        { month: 'Nov', height: 500, isHighlight: false },
-        { month: 'Dec', height: 550, isHighlight: false },
+    const monthlyData = [
+        { label: 'Jan', value: 480 },
+        { label: 'Feb', value: 720 },
+        { label: 'Mar', value: 400 }, // highlighted
+        { label: 'Apr', value: 600 },
+        { label: 'May', value: 320 },
+        { label: 'Jun', value: 670 },
+        { label: 'Jul', value: 480 },
+        { label: 'Aug', value: 680 },
+        { label: 'Sep', value: 520 },
+        { label: 'Oct', value: 600 },
+        { label: 'Nov', value: 370 },
+        { label: 'Dec', value: 540 },
     ];
 
-    // Max height for scaling the bars relative to the container height
-    const MAX_HEIGHT = 800;
-    const CHART_HEIGHT = '16rem'; // 256px, a good height for Tailwind layout
+    const max = Math.max(...monthlyData.map((m) => m.value));
+    const steps = 4;
+    const stepValue = Math.ceil(max / steps / 10) * 10;
 
     return (
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 col-span-1 lg:col-span-2 flex flex-col">
-            <div className="flex justify-between items-center mb-6">
-                <h3 className="text-lg font-semibold text-gray-800">
-                    Monthly Sales
-                </h3>
-                <MoreVertical
-                    size={20}
-                    className="text-gray-400 cursor-pointer"
-                />
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 col-span-1 lg:col-span-2 flex flex-col overflow-x-auto lg:overflow-x-hidden">
+            {/* Header */}
+            <div className="flex justify-between items-center mb-4">
+                <p className="font-semibold text-gray-900">Monthly Sales</p>
+                <MoreVertical className="w-4 h-4 text-gray-400" />
             </div>
 
-            <div className="flex flex-col flex-grow">
-                {/* Y-Axis Labels */}
-                <div className="grid grid-cols-1 gap-4 text-xs text-gray-500 mb-2">
-                    <p className="h-0 text-left">800</p>
-                    <p className="h-0 text-left -translate-y-4">600</p>
-                    <p className="h-0 text-left -translate-y-4">400</p>
-                    <p className="h-0 text-left -translate-y-4">200</p>
-                    <p className="h-0 text-left -translate-y-4">0</p>
-                </div>
-
-                {/* Chart Area */}
-                <div
-                    className="relative flex items-end pt-4"
-                    style={{ height: CHART_HEIGHT }}
-                >
-                    {/* Y-Axis Grid Lines (Basic approximation) */}
-                    <div className="absolute w-full h-full border-b border-gray-200 pointer-events-none">
-                        <div className="absolute w-full border-t border-gray-100 top-1/4"></div>
-                        <div className="absolute w-full border-t border-gray-100 top-1/2"></div>
-                        <div className="absolute w-full border-t border-gray-100 top-3/4"></div>
+            {/* Chart */}
+            <div className="relative h-50 flex flex-col mt-6 ">
+                <div className="flex flex-1">
+                    {/* Y-axis labels */}
+                    <div className="relative w-10">
+                        {Array.from({ length: steps + 1 }).map((_, i) => {
+                            const value = i * stepValue;
+                            return (
+                                <div
+                                    key={i}
+                                    className="absolute right-1 text-xs text-gray-500 font-normal"
+                                    style={{
+                                        bottom: `${(i / steps) * 100}%`,
+                                        transform: 'translateY(50%)',
+                                    }}
+                                >
+                                    {value}
+                                </div>
+                            );
+                        })}
                     </div>
 
-                    {/* Bars */}
-                    <div className="flex w-full h-full items-end justify-between px-2 z-10">
-                        {salesData.map((data) => (
+                    {/* Bars + grid */}
+                    <div className="relative flex-1 grid grid-cols-12 gap-2 items-end">
+                        {/* Horizontal grid lines */}
+                        {Array.from({ length: steps + 1 }).map((_, i) => (
                             <div
-                                key={data.month}
-                                className="w-4 flex flex-col items-center justify-end"
+                                key={i}
+                                className="absolute left-0 right-0 border-t border-gray-100 z-0"
+                                style={{ bottom: `${(i / steps) * 100}%` }}
+                            />
+                        ))}
+
+                        {monthlyData.map((m) => (
+                            <div
+                                key={m.label}
+                                className="flex flex-col items-center h-full justify-end relative z-10"
                             >
+                                {/* Bar */}
                                 <div
-                                    className={`w-full rounded-t-sm transition-all duration-300 ${
-                                        data.isHighlight
-                                            ? 'bg-[#3758F9]' // Blue highlight
-                                            : 'bg-gray-100' // Default gray
-                                    }`}
+                                    className="w-5 rounded-t-md transition-all"
                                     style={{
-                                        height: `${
-                                            (data.height / MAX_HEIGHT) * 100
-                                        }%`,
+                                        height: `${(m.value / max) * 100}%`,
+                                        backgroundColor:
+                                            m.label === 'Mar'
+                                                ? '#3758F9'
+                                                : '#E5E7EB',
                                     }}
                                 />
                             </div>
@@ -86,11 +83,14 @@ const MonthlySalesCard = () => {
                     </div>
                 </div>
 
-                {/* X-Axis Labels (Months) */}
-                <div className="flex justify-between text-xs text-gray-500 mt-2">
-                    {salesData.map((data) => (
-                        <span key={data.month} className="w-4 text-center">
-                            {data.month}
+                {/* X-axis months */}
+                <div className="grid grid-cols-12 gap-2 mt-2">
+                    {monthlyData.map((m) => (
+                        <span
+                            key={m.label}
+                            className="text-xs text-gray-500 text-center"
+                        >
+                            {m.label}
                         </span>
                     ))}
                 </div>

@@ -1,6 +1,40 @@
+'use client';
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 import Link from 'next/link';
 
 export default function LoginPage() {
+    const router = useRouter();
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+
+    const onSubmit = async (data) => {
+        setError('');
+        setLoading(true);
+        try {
+            const res = await axios.post('/api/auth/login', data);
+            if (res.status === 200) {
+                localStorage.setItem(
+                    'user',
+                    JSON.stringify({ email: data.email })
+                );
+                router.push('/dashboard');
+            }
+        } catch (err) {
+            setError(err.response?.data?.message || 'Something went wrong');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="min-h-screen flex items-center justify-center  container mx-auto px-6 md:px-10 py-8 md:py-12 lg:py-16">
             <div className="w-full max-w-md">
@@ -48,7 +82,7 @@ export default function LoginPage() {
                 </div>
 
                 {/* Form */}
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
                     <div>
                         <label className="block text-sm font-medium text-[#374151] mb-2">
                             Email <span className="text-red-500">*</span>
@@ -56,8 +90,16 @@ export default function LoginPage() {
                         <input
                             type="email"
                             placeholder="Enter your email"
+                            {...register('email', {
+                                required: 'Email is required',
+                            })}
                             className="w-full mt-1 px-4 py-3 border border-[#D1D5DB] rounded-xl font-normal focus:ring-2 focus:ring-blue-500 outline-none placeholder:text-[#9CA3AF] text-sm"
                         />
+                        {errors.email && (
+                            <p className="text-red-500 text-sm mt-1">
+                                {errors.email.message}
+                            </p>
+                        )}
                     </div>
 
                     <div>
@@ -67,8 +109,16 @@ export default function LoginPage() {
                         <input
                             type="password"
                             placeholder="Enter your password"
+                            {...register('password', {
+                                required: 'Password is required',
+                            })}
                             className="w-full mt-1 px-4 py-3 border border-[#D1D5DB] rounded-xl font-normal focus:ring-2 focus:ring-blue-500 outline-none placeholder:text-[#9CA3AF] text-sm"
                         />
+                        {errors.password && (
+                            <p className="text-red-500 text-sm mt-1">
+                                {errors.password.message}
+                            </p>
+                        )}
                     </div>
 
                     {/* Remember me + Forgot */}
@@ -92,10 +142,21 @@ export default function LoginPage() {
                     {/* Submit */}
                     <button
                         type="submit"
-                        className="cursor-pointer w-full bg-blue-600 text-white py-[12px] rounded-lg font-medium hover:bg-blue-700 transition"
+                        disabled={loading} // disable while loading
+                        className={`cursor-pointer w-full py-[12px] rounded-lg font-medium transition ${
+                            loading
+                                ? 'bg-blue-400 text-white cursor-not-allowed'
+                                : 'bg-blue-600 text-white hover:bg-blue-700'
+                        }`}
                     >
-                        Login
+                        {loading ? 'Logging in...' : 'Login'}
                     </button>
+
+                    <span>
+                        {error && (
+                            <p className="text-red-500 text-sm">{error}</p>
+                        )}
+                    </span>
                 </form>
 
                 {/* Footer */}
