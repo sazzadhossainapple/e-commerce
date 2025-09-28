@@ -30,7 +30,7 @@ export default function LoginPage() {
                         className=" cursor-pointer w-full flex items-center text-[#1F2937] font-medium justify-center gap-2 border border-[#D1D5DB] rounded-lg py-2 hover:bg-gray-100 transition"
                     >
                         <img
-                            src="/icon/facebookIcon.svg"
+                            src="/icon/FacebookIcon.svg"
                             alt="Facebook"
                             className="w-5 h-5"
                         />
