@@ -47,7 +47,7 @@ const RadialTargetCard = () => (
         </div>
 
         {/* Footer Stats (Matching colors and design) */}
-        <div className="flex justify-around py-8 ">
+        <div className="flex justify-around pt-12 pb-8 ">
             <div className="text-center">
                 <p className="text-sm text-gray-500 mb-1">Target</p>
                 <div className="flex items-center text-base font-semibold text-gray-900">

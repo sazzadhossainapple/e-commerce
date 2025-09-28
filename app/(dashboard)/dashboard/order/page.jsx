@@ -1,25 +1,26 @@
 'use client';
 import Loading from '@/components/Loading';
+import OrdersTableRow from '@/components/OrdersTableRow';
 import Pagination from '@/components/Pagination';
 import ProductTableRow from '@/components/ProductTableRow';
 import axios from 'axios';
 import { Search, CalendarDays } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-export default function ProductsPage() {
-    const [products, setProducts] = useState([]);
+export default function OrdersPage() {
+    const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const totalPages = 10; // You can calculate this dynamically if API supports pagination
 
     useEffect(() => {
-        async function fetchProducts() {
+        async function fetchOrders() {
             setLoading(true);
             setError(null);
             try {
-                const { data } = await axios.get('/api/products');
-                setProducts(data);
+                const { data } = await axios.get('/api/orders');
+                setOrders(data);
             } catch (err) {
                 setError(err.response?.data?.message || err.message);
             } finally {
@@ -27,7 +28,7 @@ export default function ProductsPage() {
             }
         }
 
-        fetchProducts();
+        fetchOrders();
     }, []);
 
     const handlePageChange = (page) => {
@@ -41,7 +42,7 @@ export default function ProductsPage() {
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                 <div className="flex flex-col lg:flex-row justify-between gap-4 mb-8">
                     <h2 className="text-md font-semibold text-gray-900">
-                        All Products
+                        All Orders
                     </h2>
 
                     {/* Search and Filter */}
@@ -72,28 +73,25 @@ export default function ProductsPage() {
                         <table className="min-w-full divide-y divide-gray-200">
                             <thead className="bg-white">
                                 <tr>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         ID
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Products
+                                    <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Customer
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Category
+                                    <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Amount
                                     </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Price
-                                    </th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Status
                                     </th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-100">
-                                {products.map((product) => (
-                                    <ProductTableRow
-                                        key={product.id}
-                                        product={product}
+                                {orders.map((orders) => (
+                                    <OrdersTableRow
+                                        key={orders.id}
+                                        order={orders}
                                     />
                                 ))}
                             </tbody>

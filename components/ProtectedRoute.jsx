@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Loading from '@/app/loading';
 
 export default function ProtectedRoute({ children }) {
     const router = useRouter();
@@ -16,7 +17,7 @@ export default function ProtectedRoute({ children }) {
     }, [router]);
 
     if (loading) {
-        return <p className="text-center mt-20">Loading...</p>;
+        return <Loading />;
     }
 
     return <>{children}</>;

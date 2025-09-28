@@ -36,31 +36,39 @@ const StatusBadge = ({ status, color }) => {
 
 const ProductTableRow = ({ product }) => (
     <tr className="hover:bg-gray-50 border-b border-gray-100 last:border-b-0">
+        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            {product?.id || 'N/A'}
+        </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
             <div className="flex items-center gap-3">
                 <Image
-                    src={product.image}
-                    alt={product.name}
+                    src={product?.image}
+                    alt={product?.name}
                     width={40}
                     height={40}
                     className="rounded-md object-cover w-10 h-10"
                 />
                 <div>
-                    <p className="font-medium text-gray-900">{product.name}</p>
+                    <p className="font-medium text-gray-900">
+                        {product?.name || 'N/A'}
+                    </p>
                     <p className="text-gray-500 text-xs">
-                        {product.variants} Variants
+                        {product?.variants || 0} Variants
                     </p>
                 </div>
             </div>
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            {product.category}
+            {product?.category || 'N/A'}
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">
-            ${product.price.toFixed(2)}
+            ${product?.price.toFixed(2)}
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm">
-            <StatusBadge status={product.status} color={product.statusColor} />
+            <StatusBadge
+                status={product?.status || 'N/A'}
+                color={product?.statusColor}
+            />
         </td>
     </tr>
 );

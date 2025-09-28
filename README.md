@@ -13,3 +13,8 @@ cd e-commerce
 
 -   npm install
 -   npm run dev
+
+### login credentials
+
+-   email: admin@example.com
+-   password: admin123

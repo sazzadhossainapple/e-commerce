@@ -18,6 +18,7 @@ import {
     Settings,
     HelpCircle,
     LogOut,
+    ListOrdered,
 } from 'lucide-react';
 import ProtectedRoute from '@/components/ProtectedRoute';
 
@@ -77,6 +78,11 @@ export default function Layout({ children }) {
             label: 'Products',
             href: '/dashboard/products',
             icon: <Box size={20} />,
+        },
+        {
+            label: 'Orders',
+            href: '/dashboard/order',
+            icon: <ListOrdered size={20} />,
         },
     ];
 
