@@ -37,7 +37,7 @@ export default function NotFound() {
                 Page Not Found
             </p>
 
-            <p className="mb-8 text-xs sm:text-sm md:text-base text-[#6B7280] font-normal max-w-xs sm:max-w-md md:max-w-lg text-center">
+            <p className="mb-14 text-xs sm:text-sm md:text-base text-[#6B7280] font-normal max-w-xs sm:max-w-md md:max-w-lg text-center">
                 Don't worry, you can head back to the homepage or use the
                 navigation menu to find what you need
             </p>
