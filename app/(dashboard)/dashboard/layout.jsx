@@ -143,9 +143,9 @@ export default function Layout({ children }) {
                             <li key={item.href} className="mb-1">
                                 <Link
                                     href={item.href}
-                                    className={`flex items-center gap-2 py-2 px-4 font-medium text-md rounded-lg transition duration-300 ease-in-out hover:bg-blue-50 hover:text-blue-900 ${
+                                    className={`flex items-center gap-2 py-2 px-4 font-medium text-md rounded-lg transition duration-300 ease-in-out hover:bg-[#ECF3FF] hover:text-[#3758F9] ${
                                         pathname === item.href
-                                            ? 'bg-[#ECF3FF] text-[#3758F9] '
+                                            ? 'bg-[#ECF3FF] text-[#3758F9]'
                                             : 'text-[#344054]'
                                     }`}
                                 >
