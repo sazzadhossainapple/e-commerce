@@ -29,7 +29,7 @@ const notifications = [
         action: 'requests permission to change',
         project: 'Project - Nganter App',
         time: '5 min ago',
-        avatar: '/image/notificationImage.png', // Replace with your actual image paths
+        avatar: '/image/notificationImage.png', 
         statusColor: 'bg-green-500', // Green status dot
     },
     {
